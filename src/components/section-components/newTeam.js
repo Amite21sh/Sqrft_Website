@@ -8,7 +8,7 @@ function Team() {
   const fetchTeamData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5247/api/teamMembers/"
+        "https://sqrft-website-backend-ohqz.onrender.com/api/teamMembers/"
       );
       console.log("Team Members", response.data);
       setTeamMembers(response.data);
@@ -32,7 +32,7 @@ function Team() {
               >
                 <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center">
                   <img
-                    src={`http://localhost:5247${member.image}`} // Replace with your image path
+                    src={`https://sqrft-website-backend-ohqz.onrender.com${member.image}`} // Replace with your image path
                     alt={member.name}
                     className="w-40 h-40 object-cover rounded-xl mb-6"
                   />

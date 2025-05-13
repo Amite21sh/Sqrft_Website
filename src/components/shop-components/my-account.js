@@ -122,7 +122,7 @@ const MyAccount = () => {
 
   const fetchTeamMembers = async () => {
     try {
-      const response = await axios.get("http://localhost:5247/api/teamMembers");
+      const response = await axios.get("https://sqrft-website-backend-ohqz.onrender.com/api/teamMembers");
       setTeamMembers(response.data);
     } catch (error) {
       console.error("Error fetching team members:", error);
@@ -142,7 +142,7 @@ const MyAccount = () => {
     formDataObj.append("image", teamForm.image);
     formDataObj.append("position", teamForm.position);
     try {
-      await axios.post("http://localhost:5247/api/teamMembers", formDataObj, {
+      await axios.post("https://sqrft-website-backend-ohqz.onrender.com/api/teamMembers", formDataObj, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -170,7 +170,7 @@ const MyAccount = () => {
     formDataObj.append("content", blogForm.content);
     formDataObj.append("writtenBy", blogForm.writtenBy);
     try {
-      await axios.post("http://localhost:5247/api/blogs", formDataObj, {
+      await axios.post("https://sqrft-website-backend-ohqz.onrender.com/api/blogs", formDataObj, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       fetchBlogs();
@@ -189,7 +189,7 @@ const MyAccount = () => {
   };
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get("http://localhost:5247/api/blogs");
+      const response = await axios.get("https://sqrft-website-backend-ohqz.onrender.com/api/blogs");
       setBlogs(response.data);
     } catch (error) {
       console.error("Error fetching blogs:", error);
@@ -199,7 +199,7 @@ const MyAccount = () => {
   const deleteBlog = async (id) => {
     setDeleting(id);
     try {
-      await axios.delete(`http://localhost:5247/api/blogs/${id}`);
+      await axios.delete(`https://sqrft-website-backend-ohqz.onrender.com/api/blogs/${id}`);
       fetchBlogs();
     } catch (error) {
       console.error("Error deleting blog:", error);
@@ -246,7 +246,7 @@ const MyAccount = () => {
   const deleteTeamMember = async (id) => {
     setDeleting(id);
     try {
-      await axios.delete(`http://localhost:5247/api/teamMembers/${id}`);
+      await axios.delete(`https://sqrft-website-backend-ohqz.onrender.com/api/teamMembers/${id}`);
 
       fetchTeamMembers();
     } catch (error) {
@@ -1371,7 +1371,7 @@ const MyAccount = () => {
                                       <td>{teamMember.name || "N/A"}</td>
                                       <td>
                                         <img
-                                          src={`http://localhost:5247${teamMember.image}`}
+                                          src={`https://sqrft-website-backend-ohqz.onrender.com${teamMember.image}`}
                                           alt={teamMember.name}
                                           width={50}
                                         />
@@ -1504,7 +1504,7 @@ const MyAccount = () => {
                                       <td>{blog.content || "N/A"}</td>
                                       <td>
                                         <img
-                                          src={`http://localhost:5247${blog.image}`}
+                                          src={`https://sqrft-website-backend-ohqz.onrender.com${blog.image}`}
                                           alt={blog.title}
                                           width={50}
                                         />

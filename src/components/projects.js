@@ -9,7 +9,7 @@ const Projects = () => {
 
   const fetchProjectData = async () => {
     try {
-      const response = await axios.get("http://localhost:5247/api/form");
+      const response = await axios.get("https://sqrft-website-backend-ohqz.onrender.com/api/form");
       console.log("Projects", response.data.data);
       setProjects(response.data.data);
     } catch (error) {

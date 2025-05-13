@@ -7,7 +7,7 @@ function LatestNews() {
 
   const fetchNewsData = async () => {
     try {
-      const response = await axios.get("http://localhost:5247/api/blogs/");
+      const response = await axios.get("https://sqrft-website-backend-ohqz.onrender.com/api/blogs/");
       console.log("Latest News", response.data);
       setNews(response.data);
     } catch (error) {
@@ -33,7 +33,7 @@ function LatestNews() {
               className="bg-gradient-to-b from-gray-900 to-gray-800 rounded-lg overflow-hidden shadow-lg"
             >
               <img
-                src={`http://localhost:5247${item.image}`} // Replace with your image path
+                src={`https://sqrft-website-backend-ohqz.onrender.com${item.image}`} // Replace with your image path
                 alt={item.title}
                 className="w-full h-56 object-cover"
               />

@@ -8,7 +8,7 @@ function Testimonials() {
     // Fetch testimonials from the API when the component mounts
 
     axios
-      .get("http://localhost:5247/api/testimonialUsers") // Replace with your API endpoint
+      .get("https://sqrft-website-backend-ohqz.onrender.com/api/testimonialUsers") // Replace with your API endpoint
       .then((response) => {
         console.log(response.data); // Handle the response data
         // You can set the state here to display the testimonials dynamically
