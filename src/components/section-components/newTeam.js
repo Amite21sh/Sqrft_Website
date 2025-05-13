@@ -20,7 +20,6 @@ function Team() {
   useEffect(() => {
     fetchTeamData();
   }, []);
-
   return (
     <section className="py-16 bg-gray-200">
       <div className="max-w-7xl mx-auto px-6 text-center">
