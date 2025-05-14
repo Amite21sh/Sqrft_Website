@@ -1,7 +1,7 @@
 {
   "name": "quarter",
   "version": "0.1.0",
-  "homepage": "https://tunatheme.com/tf/react/quarter-preview/quarter",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@cloudinary/react": "^1.14.1",
