@@ -43,6 +43,7 @@ import Wishlist from './components/wishlist';
 import OrderTracking from './components/order-tracking';
 import History from './components/history';
 import WhyChooseUs from './components/whychoose';
+import Testimonials from './components/testimonial';
 
 // Class Component for Routes
 class Root extends Component {
@@ -68,6 +69,7 @@ class Root extends Component {
                     <Route path="/shop-grid" element={<ShopGrid />} />
                     <Route path="/shop-left-sidebar" element={<Projects />} />
                     <Route path="/shop-right-sidebar" element={<ShopRightSidebar />} />
+                    <Route path="/testimonials" element={<Testimonials />} />
 
                     <Route path="/product-details/:id" element={<ProdductDetails />} />
 
