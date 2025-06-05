@@ -15,25 +15,6 @@ import Footer from './global-components/newFooter';
 
 function HomePage() {
 
-  // const [projects, setProjects] = useState([]);
-
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get('http://localhost:5247/api/form/');
-  //     console.log(response.data);
-  //     setProjects(response.data);
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error);
-  //   }
-  // };
-
-
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-    
-
 
   return (
     <div className="font-roboto">

@@ -44,6 +44,7 @@ import OrderTracking from './components/order-tracking';
 import History from './components/history';
 import WhyChooseUs from './components/whychoose';
 import Testimonials from './components/testimonial';
+import MediaGallery from './components/media';
 
 // Class Component for Routes
 class Root extends Component {
@@ -70,6 +71,7 @@ class Root extends Component {
                     <Route path="/shop-left-sidebar" element={<Projects />} />
                     <Route path="/shop-right-sidebar" element={<ShopRightSidebar />} />
                     <Route path="/testimonials" element={<Testimonials />} />
+                    <Route path="/media" element={<MediaGallery />} />
 
                     <Route path="/product-details/:id" element={<ProdductDetails />} />
 

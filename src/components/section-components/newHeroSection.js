@@ -4,7 +4,7 @@ import { Search } from "lucide-react"; // You can also use any icon library you 
 function HeroSection() {
   return (
     <section className="flex flex-col items-center justify-center text-center min-h-[80vh] bg-gradient-to-r from-sky-500 via-gray-400 to-orange-500 px-4">
-      <h1 className="text-5xl font-bold text-white mb-4">
+      <h1 className="text-5xl font-bold text-white mb-4 mt-40">
         Find Your Dream Property
       </h1>
       <p className="text-xl text-white mb-10">

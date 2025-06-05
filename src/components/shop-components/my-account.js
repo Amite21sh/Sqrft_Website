@@ -99,6 +99,12 @@ const MyAccount = () => {
     position: "",
   });
 
+  const [media, setMedia] = useState([]);
+
+  const [mediaForm, setMediaForm] = useState({
+    image: null,
+  });
+
   const [loading, setLoading] = useState(false);
 
   const [deleting, setDeleting] = useState(null);
@@ -107,6 +113,7 @@ const MyAccount = () => {
     fetchTestimonials();
     fetchTeamMembers();
     fetchBlogs();
+    fetchMedia();
   }, []);
 
   const fetchTestimonials = async () => {
@@ -122,10 +129,21 @@ const MyAccount = () => {
 
   const fetchTeamMembers = async () => {
     try {
-      const response = await axios.get("https://sqrft-website-backend-ohqz.onrender.com/api/teamMembers");
+      const response = await axios.get(
+        "https://sqrft-website-backend-ohqz.onrender.com/api/teamMembers"
+      );
       setTeamMembers(response.data);
     } catch (error) {
       console.error("Error fetching team members:", error);
+    }
+  };
+
+  const fetchMedia = async () => {
+    try {
+      const response = await axios.get("https://sqrft-website-backend.onrender.com/api/media");
+      setMedia(response.data);
+    } catch (error) {
+      console.error("Error fetching media:", error);
     }
   };
 
@@ -142,9 +160,13 @@ const MyAccount = () => {
     formDataObj.append("image", teamForm.image);
     formDataObj.append("position", teamForm.position);
     try {
-      await axios.post("https://sqrft-website-backend-ohqz.onrender.com/api/teamMembers", formDataObj, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await axios.post(
+        "https://sqrft-website-backend-ohqz.onrender.com/api/teamMembers",
+        formDataObj,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
 
       fetchTeamMembers();
 
@@ -170,9 +192,13 @@ const MyAccount = () => {
     formDataObj.append("content", blogForm.content);
     formDataObj.append("writtenBy", blogForm.writtenBy);
     try {
-      await axios.post("https://sqrft-website-backend-ohqz.onrender.com/api/blogs", formDataObj, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await axios.post(
+        "https://sqrft-website-backend-ohqz.onrender.com/api/blogs",
+        formDataObj,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
       fetchBlogs();
       setBlogForm({
         title: "",
@@ -189,7 +215,9 @@ const MyAccount = () => {
   };
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get("https://sqrft-website-backend-ohqz.onrender.com/api/blogs");
+      const response = await axios.get(
+        "https://sqrft-website-backend-ohqz.onrender.com/api/blogs"
+      );
       setBlogs(response.data);
     } catch (error) {
       console.error("Error fetching blogs:", error);
@@ -199,7 +227,9 @@ const MyAccount = () => {
   const deleteBlog = async (id) => {
     setDeleting(id);
     try {
-      await axios.delete(`https://sqrft-website-backend-ohqz.onrender.com/api/blogs/${id}`);
+      await axios.delete(
+        `https://sqrft-website-backend-ohqz.onrender.com/api/blogs/${id}`
+      );
       fetchBlogs();
     } catch (error) {
       console.error("Error deleting blog:", error);
@@ -243,10 +273,43 @@ const MyAccount = () => {
     }
   };
 
+
+
+  const submitMedia = async (e) => {
+  e.preventDefault();
+
+  // Check if file is a File object
+  if (!(mediaForm.image instanceof File)) {
+    alert("Please select a valid image file.");
+    return;
+  }
+
+  setLoading(true);
+
+  const formDataObj = new FormData();
+  formDataObj.append("image", mediaForm.image); // Ensure this is a File
+
+  try {
+    await axios.post("https://sqrft-website-backend.onrender.com/api/media", formDataObj, {
+      headers: { "Content-Type": "multipart/form-data" },
+    });
+    fetchMedia(); // Refresh media list
+    setMediaForm({ image: null }); // Reset form
+  } catch (error) {
+    console.error("Error adding media:", error.response || error);
+    alert("Failed to upload image. Check server or file type.");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
   const deleteTeamMember = async (id) => {
     setDeleting(id);
     try {
-      await axios.delete(`https://sqrft-website-backend-ohqz.onrender.com/api/teamMembers/${id}`);
+      await axios.delete(
+        `https://sqrft-website-backend-ohqz.onrender.com/api/teamMembers/${id}`
+      );
 
       fetchTeamMembers();
     } catch (error) {
@@ -265,6 +328,18 @@ const MyAccount = () => {
       fetchTestimonials();
     } catch (error) {
       console.error("Error deleting testimonial:", error);
+    } finally {
+      setDeleting(null);
+    }
+  };
+
+  const deleteMedia = async (id) => {
+    setDeleting(id);
+    try {
+      await axios.delete(`https://sqrft-website-backend.onrender.com/api/media/${id}`);
+      fetchMedia();
+    } catch (error) {
+      console.error("Error deleting media:", error);
     } finally {
       setDeleting(null);
     }
@@ -523,6 +598,14 @@ const MyAccount = () => {
                           onClick={() => handleTabClick("ltn_tab_1_11")}
                         >
                           Team Members <i className="fa-solid fa-user" />
+                        </a>
+                        <a
+                          className={`nav-link ${
+                            activeTab === "ltn_tab_1_13" ? "active" : ""
+                          }`}
+                          onClick={() => handleTabClick("ltn_tab_1_13")}
+                        >
+                          Media <i className="fa-solid fa-user" />
                         </a>
                         <a
                           className={`nav-link ${
@@ -1406,6 +1489,85 @@ const MyAccount = () => {
                           </div>
                         </div>
                       </div>
+
+                      {/* Media tab */}
+                      <div
+                        className={`tab-pane fade ${
+                          activeTab === "ltn_tab_1_13" ? "active show" : ""
+                        }`}
+                        id="ltn_tab_1_13"
+                      >
+                        <div className="ltn__myaccount-tab-content-inner">
+                          <div className="ltn__my-properties-table table-responsive">
+                            <h2 className="mb-3">Add Media </h2>
+
+                            {/* Media Form */}
+                            <form onSubmit={submitMedia} className="mb-4">
+                              <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) =>
+                                  setMediaForm({
+                                    ...mediaForm,
+                                    image: e.target.files[0],
+                                  })
+                                }
+                              />
+
+                              <button type="submit" disabled={loading}>
+                                {loading ? "Submitting..." : "Submit Media"}
+                              </button>
+                            </form>
+
+                            {/* Media Table */}
+                            <table className="table table-bordered">
+                              <thead>
+                                <tr>
+                                  <th>Image</th>
+                                  <th>Delete</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {media.length > 0 ? (
+                                  media.map((med) => (
+                                    <tr key={med._id}>
+                                      <td>{med.name || "N/A"}</td>
+                                      <td>
+                                        <img
+                                          src={`https://sqrft-website-backend-ohqz.onrender.com${med.image}`}
+                                          alt={med.name}
+                                          width={50}
+                                        />
+                                      </td>
+
+                                      <td>
+                                        <button
+                                          className="btn btn-danger btn-sm"
+                                          onClick={() => deleteMedia(med._id)}
+                                          disabled={deleting === med._id}
+                                        >
+                                          {deleting === med._id ? (
+                                            "Deleting..."
+                                          ) : (
+                                            <i className="fa-solid fa-trash-can" />
+                                          )}
+                                        </button>
+                                      </td>
+                                    </tr>
+                                  ))
+                                ) : (
+                                  <tr>
+                                    <td colSpan="5" className="text-center">
+                                      No Team Members Details Available.
+                                    </td>
+                                  </tr>
+                                )}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+
                       {/* Blog details tab */}
                       <div
                         className={`tab-pane fade ${
