@@ -39,7 +39,7 @@ function Testimonials() {
               >
                 <div className="flex items-center mb-4">
                   <img
-                    src={`https://sqrft-website-backend.onrender.com${user.image}`} 
+                    src={`https://sqrft-website-backend-ohqz.onrender.com${user.image}`} 
                     alt={user.name}
                     className="w-14 h-14 rounded-full object-cover"
                   />
