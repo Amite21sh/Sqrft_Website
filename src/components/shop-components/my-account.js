@@ -140,7 +140,7 @@ const MyAccount = () => {
 
   const fetchMedia = async () => {
     try {
-      const response = await axios.get("https://sqrft-website-backend.onrender.com/api/media");
+      const response = await axios.get("https://sqrft-website-backend-ohqz.onrender.com/api/media");
       setMedia(response.data);
     } catch (error) {
       console.error("Error fetching media:", error);
@@ -290,7 +290,7 @@ const MyAccount = () => {
   formDataObj.append("image", mediaForm.image); // Ensure this is a File
 
   try {
-    await axios.post("https://sqrft-website-backend.onrender.com/api/media", formDataObj, {
+    await axios.post("https://sqrft-website-backend-ohqz.onrender.com/api/media", formDataObj, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     fetchMedia(); // Refresh media list
@@ -336,7 +336,7 @@ const MyAccount = () => {
   const deleteMedia = async (id) => {
     setDeleting(id);
     try {
-      await axios.delete(`https://sqrft-website-backend.onrender.com/api/media/${id}`);
+      await axios.delete(`https://sqrft-website-backend-ohqz.onrender.com/api/media/${id}`);
       fetchMedia();
     } catch (error) {
       console.error("Error deleting media:", error);
