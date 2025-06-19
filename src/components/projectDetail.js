@@ -12,7 +12,6 @@ import Footer from "./global-components/newFooter";
 import { useLocation } from "react-router-dom";
 
 const PropertyDetailPage = () => {
-
   const location = useLocation();
   const { projectData } = location.state || {}; // Get the project data from the location state
 
@@ -52,18 +51,18 @@ const PropertyDetailPage = () => {
 
   return (
     <>
-    <div className="bg-gradient-to-r from-[#362d2a] via-[#27323e] to-[#1e3a5c] min-h-screen p-20">
-      <Navbar />
-      {/* <QuickSummaryTable summaryData={summaryData} /> */}
-      {/* <OverviewSection overview={overview} /> */}
-      <DescriptionSection projectData={projectData} />
-      <GalleryCarousel images={projectData.images} />
-      <AmenitiesSection amenities={projectData.amenities} />
-      <LocationMap mapSrc={mapSrc} />
-      <FAQsSection faqs={faqs} />
-      <RERASection reraInfo={reraInfo} />
-    </div>
-    <Footer />
+      <div className="bg-gradient-to-r from-[#362d2a] via-[#27323e] to-[#1e3a5c] min-h-screen p-20">
+        <Navbar />
+        {/* <QuickSummaryTable summaryData={summaryData} /> */}
+        {/* <OverviewSection overview={overview} /> */}
+        <DescriptionSection projectData={projectData} />
+        <GalleryCarousel images={projectData.images} />
+        <AmenitiesSection amenities={projectData.amenities} />
+        <LocationMap mapSrc={mapSrc} />
+        {/* <FAQsSection faqs={faqs} /> */}
+        <RERASection reraInfo={projectData} />
+      </div>
+      <Footer />
     </>
   );
 };

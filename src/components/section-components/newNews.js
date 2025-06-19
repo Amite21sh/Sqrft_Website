@@ -24,10 +24,10 @@ function LatestNews() {
   return (
     <section className="py-16 bg-gray-200 text-center">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold mt-20 mb-45">Latest News</h2>
+        <h2 className="text-4xl font-bold mt-5 mb-20">Latest News</h2>
 
         <div className="grid md:grid-cols-2 gap-10">
-          {news.map((item) => (
+          {news.slice(0,2).map((item) => (
             <div
               key={item.id} // Assuming each news item has a unique ID
               className="bg-gradient-to-b from-gray-900 to-gray-800 rounded-lg overflow-hidden shadow-lg"

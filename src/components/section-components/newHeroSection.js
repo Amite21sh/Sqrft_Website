@@ -4,14 +4,17 @@ import { Search } from "lucide-react"; // You can also use any icon library you 
 function HeroSection() {
   return (
     <section className="flex flex-col items-center justify-center text-center min-h-[80vh] bg-gradient-to-r from-sky-500 via-gray-400 to-orange-500 px-4">
-      <h1 className="text-5xl font-bold text-white mb-4 mt-40">
+      <h1 className="text-5xl font-bold text-white mb-30 mt-40">
         Find Your Dream Property
       </h1>
-      <p className="text-xl text-white mb-10">
+      <p className="text-3xl font-semibold text-white mb-20">
         Search properties for sale, rent, or lease across top locations.
       </p>
+      {/* <p className="text-2xl text-white mb-10">
+        Explore verified listings, premium spaces, and the best deals near you.
+      </p> */}
 
-      <div className="flex items-center rounded-md overflow-hidden w-full max-w-3xl">
+      {/* <div className="flex items-center rounded-md overflow-hidden w-full max-w-3xl">
         <input
           type="text"
           placeholder="Enter City, Location, or Project Name"
@@ -21,9 +24,7 @@ function HeroSection() {
           <Search size={20} />
           Search
         </button>
-      </div>
-
-
+      </div> */}
     </section>
   );
 }

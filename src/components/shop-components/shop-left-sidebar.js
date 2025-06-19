@@ -19,7 +19,7 @@ const ShopGridV1 = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://sqrft-website-backend.onrender.com/api/form');
+                const response = await fetch('https://sqrft-website-backend-ohqz.onrender.com/api/form');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

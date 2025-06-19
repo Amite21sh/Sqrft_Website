@@ -7,6 +7,7 @@ const MyAccount = () => {
     category: "Commercial",
     title: "",
     description: "",
+    aboutBuilder: "",
     address: "",
     area: "",
     rooms: "",
@@ -17,7 +18,9 @@ const MyAccount = () => {
     propertyStatus: "forSale",
     features: [],
     amenities: [],
-    floorPlans: [],
+    // floorPlans: [],
+    disclaimer: "",
+    reraDetails: "",
     images: [],
   });
 
@@ -75,7 +78,9 @@ const MyAccount = () => {
   const [blogForm, setBlogForm] = useState({
     title: "",
     description: "",
-    content: "",
+    para_1: "",
+    para_2: "",
+    conclusion: "",
     image: null,
     writtenBy: "",
   });
@@ -119,7 +124,7 @@ const MyAccount = () => {
   const fetchTestimonials = async () => {
     try {
       const response = await axios.get(
-        "https://sqrft-website-backend.onrender.com/api/testimonialUsers"
+        "https://sqrft-website-backend-ohqz.onrender.com/api/testimonialUsers"
       );
       setTestimonials(response.data);
     } catch (error) {
@@ -140,7 +145,9 @@ const MyAccount = () => {
 
   const fetchMedia = async () => {
     try {
-      const response = await axios.get("https://sqrft-website-backend-ohqz.onrender.com/api/media");
+      const response = await axios.get(
+        "https://sqrft-website-backend-ohqz.onrender.com/api/media"
+      );
       setMedia(response.data);
     } catch (error) {
       console.error("Error fetching media:", error);
@@ -156,9 +163,8 @@ const MyAccount = () => {
     setLoading(true);
     const formDataObj = new FormData();
     formDataObj.append("name", teamForm.name);
-
-    formDataObj.append("image", teamForm.image);
     formDataObj.append("position", teamForm.position);
+    formDataObj.append("image", teamForm.image);
     try {
       await axios.post(
         "https://sqrft-website-backend-ohqz.onrender.com/api/teamMembers",
@@ -170,7 +176,7 @@ const MyAccount = () => {
 
       fetchTeamMembers();
 
-      setTeamForm({ name: "", image: null, position: "" });
+      setTeamForm({ name: "", position: "", image: null });
     } catch (error) {
       console.error("Error adding team member:", error);
     } finally {
@@ -178,41 +184,87 @@ const MyAccount = () => {
     }
   };
 
+  // const submitBlog = async (e) => {
+  //   e.preventDefault();
+  //   if (!blogForm.image) {
+  //     alert("Please select an image.");
+  //     return;
+  //   }
+  //   setLoading(true);
+  //   const formDataObj = new FormData();
+  //   formDataObj.append("title", blogForm.title);
+  //   formDataObj.append("description", blogForm.description);
+  //   formDataObj.append("image", blogForm.image);
+  //   formDataObj.append("para_1", blogForm.para_1);
+  //   formDataObj.append("para_2", blogForm.para_2);
+  //   formDataObj.append("conclusion", blogForm.conclusion);
+  //   formDataObj.append("writtenBy", blogForm.writtenBy);
+  //   try {
+  //     await axios.post(
+  //       "https://sqrft-website-backend-ohqz.onrender.com/api/blogs",
+  //       formDataObj,
+  //       {
+  //         headers: { "Content-Type": "multipart/form-data" },
+  //       }
+  //     );
+  //     fetchBlogs();
+  //     setBlogForm({
+  //       title: "",
+  //       description: "",
+  //       para_1: "",
+  //       para_2:"",
+  //       conclusion:"",
+  //       image: null,
+  //       writtenBy: "",
+  //     });
+  //   } catch (error) {
+  //     console.error("Error adding blog:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const submitBlog = async (e) => {
     e.preventDefault();
     if (!blogForm.image) {
       alert("Please select an image.");
       return;
     }
+
     setLoading(true);
     const formDataObj = new FormData();
     formDataObj.append("title", blogForm.title);
     formDataObj.append("description", blogForm.description);
     formDataObj.append("image", blogForm.image);
-    formDataObj.append("content", blogForm.content);
+    formDataObj.append("para_1", blogForm.para_1);
+    formDataObj.append("para_2", blogForm.para_2);
+    formDataObj.append("conclusion", blogForm.conclusion);
     formDataObj.append("writtenBy", blogForm.writtenBy);
+
     try {
       await axios.post(
         "https://sqrft-website-backend-ohqz.onrender.com/api/blogs",
-        formDataObj,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
+        formDataObj
+        // ❌ Don't set headers manually here
       );
       fetchBlogs();
       setBlogForm({
         title: "",
         description: "",
-        content: "",
+        para_1: "",
+        para_2: "",
+        conclusion: "",
         image: null,
         writtenBy: "",
       });
     } catch (error) {
       console.error("Error adding blog:", error);
+      alert("Something went wrong while submitting the blog.");
     } finally {
       setLoading(false);
     }
   };
+
   const fetchBlogs = async () => {
     try {
       const response = await axios.get(
@@ -238,71 +290,206 @@ const MyAccount = () => {
     }
   };
 
+  // const submitTestimonial = async (e) => {
+  //   e.preventDefault();
+  //   if (!testimonialForm.image) {
+  //     alert("Please select an image.");
+  //     return;
+  //   }
+  //   setLoading(true);
+  //   const formDataObj = new FormData();
+  //   formDataObj.append("name", testimonialForm.name);
+  //   formDataObj.append("image", testimonialForm.image);
+  //   formDataObj.append("description", testimonialForm.description);
+  //   formDataObj.append("position", testimonialForm.position);
+
+  //   try {
+  //     await axios.post(
+  //       "https://sqrft-website-backend-ohqz.onrender.com/api/testimonialUsers",
+  //       formDataObj,
+  //       {
+  //         headers: { "Content-Type": "multipart/form-data" },
+  //       }
+  //     );
+  //     fetchTestimonials();
+  //     setTestimonialForm({
+  //       name: "",
+  //       image: null,
+  //       description: "",
+  //       position: "",
+  //     });
+  //   } catch (error) {
+  //     console.error("Error adding testimonial:", error);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // const submitTestimonial = async (e) => {
+  //   e.preventDefault();
+
+  //   // Validate image
+  //   if (!testimonialForm.image) {
+  //     alert("❗ Please select an image.");
+  //     return;
+  //   }
+
+  //   if (!testimonialForm.image.type.startsWith("image/")) {
+  //     alert("❗ Only image files are allowed.");
+  //     return;
+  //   }
+
+  //   // Optional: Validate other fields
+  //   if (
+  //     !testimonialForm.name ||
+  //     !testimonialForm.description ||
+  //     !testimonialForm.position
+  //   ) {
+  //     alert("❗ Please fill in all the fields.");
+  //     return;
+  //   }
+
+  //   setLoading(true);
+
+  //   const formDataObj = new FormData();
+  //   formDataObj.append("name", testimonialForm.name);
+  //   formDataObj.append("image", testimonialForm.image);
+  //   formDataObj.append("description", testimonialForm.description);
+  //   formDataObj.append("position", testimonialForm.position);
+
+  //   try {
+  //     const response = await axios.post(
+  //       "https://sqrft-website-backend-ohqz.onrender.com/api/testimonialUsers",
+  //       formDataObj // no headers here!
+  //     );
+
+  //     // const response = await axios.post(
+  //     //   "https://sqrft-website-backend-ohqz.onrender.com/api/testimonialUsers",
+  //     //   formDataObj,
+  //     //   {
+  //     //     headers: { "Content-Type": "multipart/form-data" },
+  //     //   }
+  //     // );
+
+  //     if (!testimonialForm.image) {
+  //       alert("Please select an image.");
+  //       return;
+  //     }
+
+  //     for (let pair of formDataObj.entries()) {
+  //       console.log(`${pair[0]}:`, pair[1]);
+  //     }
+
+  //     if (response.status === 201 || response.status === 200) {
+  //       alert("✅ Testimonial submitted successfully!");
+  //       fetchTestimonials();
+
+  //       // Reset form
+  //       setTestimonialForm({
+  //         name: "",
+  //         image: null,
+  //         description: "",
+  //         position: "",
+  //       });
+  //     } else {
+  //       alert("⚠️ Failed to submit testimonial.");
+  //     }
+  //   } catch (error) {
+  //     console.error(
+  //       "🔥 Error adding testimonial:",
+  //       error.response?.data || error.message
+  //     );
+  //     alert("❌ An error occurred while submitting the testimonial.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   const submitTestimonial = async (e) => {
     e.preventDefault();
-    if (!testimonialForm.image) {
-      alert("Please select an image.");
+
+    // Validate all fields
+    if (
+      !testimonialForm.name ||
+      !testimonialForm.image ||
+      !testimonialForm.description ||
+      !testimonialForm.position
+    ) {
+      alert("❗ Please fill in all the fields and upload an image.");
       return;
     }
+
+    if (!testimonialForm.image.type.startsWith("image/")) {
+      alert("❗ Only image files are allowed.");
+      return;
+    }
+
     setLoading(true);
-    const formDataObj = new FormData();
-    formDataObj.append("name", testimonialForm.name);
-    formDataObj.append("image", testimonialForm.image);
-    formDataObj.append("description", testimonialForm.description);
-    formDataObj.append("position", testimonialForm.position);
+
+    const formData = new FormData();
+    formData.append("name", testimonialForm.name);
+    formData.append("description", testimonialForm.description);
+    formData.append("position", testimonialForm.position);
+    formData.append("image", testimonialForm.image); // important key name must match backend
 
     try {
-      await axios.post(
-        "https://sqrft-website-backend.onrender.com/api/testimonialUsers",
-        formDataObj,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
+      const response = await axios.post(
+        "https://sqrft-website-backend-ohqz.onrender.com/api/testimonialUsers",
+        formData
+        // ❗ DO NOT manually set Content-Type. Let browser set the boundary automatically
       );
-      fetchTestimonials();
-      setTestimonialForm({
-        name: "",
-        image: null,
-        description: "",
-        position: "",
-      });
+
+      if (response.status === 200 || response.status === 201) {
+        alert("✅ Testimonial submitted successfully!");
+        fetchTestimonials();
+        setTestimonialForm({
+          name: "",
+          image: null,
+          description: "",
+          position: "",
+        });
+      } else {
+        alert("⚠️ Submission failed.");
+      }
     } catch (error) {
-      console.error("Error adding testimonial:", error);
+      console.error("🔥 Error:", error.response?.data || error.message);
+      alert("❌ An error occurred while submitting the testimonial.");
     } finally {
       setLoading(false);
     }
   };
 
-
-
   const submitMedia = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  // Check if file is a File object
-  if (!(mediaForm.image instanceof File)) {
-    alert("Please select a valid image file.");
-    return;
-  }
+    // Check if file is a File object
+    if (!(mediaForm.image instanceof File)) {
+      alert("Please select a valid image file.");
+      return;
+    }
 
-  setLoading(true);
+    setLoading(true);
 
-  const formDataObj = new FormData();
-  formDataObj.append("image", mediaForm.image); // Ensure this is a File
+    const formDataObj = new FormData();
+    formDataObj.append("image", mediaForm.image); // Ensure this is a File
 
-  try {
-    await axios.post("https://sqrft-website-backend-ohqz.onrender.com/api/media", formDataObj, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    fetchMedia(); // Refresh media list
-    setMediaForm({ image: null }); // Reset form
-  } catch (error) {
-    console.error("Error adding media:", error.response || error);
-    alert("Failed to upload image. Check server or file type.");
-  } finally {
-    setLoading(false);
-  }
-};
-
+    try {
+      await axios.post(
+        "https://sqrft-website-backend-ohqz.onrender.com/api/media",
+        formDataObj,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+      fetchMedia(); // Refresh media list
+      setMediaForm({ image: null }); // Reset form
+    } catch (error) {
+      console.error("Error adding media:", error.response || error);
+      alert("Failed to upload image. Check server or file type.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const deleteTeamMember = async (id) => {
     setDeleting(id);
@@ -323,7 +510,7 @@ const MyAccount = () => {
     setDeleting(id);
     try {
       await axios.delete(
-        `https://sqrft-website-backend.onrender.com/api/testimonialUsers/${id}`
+        `https://sqrft-website-backend-ohqz.onrender.com/api/testimonialUsers/${id}`
       );
       fetchTestimonials();
     } catch (error) {
@@ -336,7 +523,9 @@ const MyAccount = () => {
   const deleteMedia = async (id) => {
     setDeleting(id);
     try {
-      await axios.delete(`https://sqrft-website-backend-ohqz.onrender.com/api/media/${id}`);
+      await axios.delete(
+        `https://sqrft-website-backend-ohqz.onrender.com/api/media/${id}`
+      );
       fetchMedia();
     } catch (error) {
       console.error("Error deleting media:", error);
@@ -350,7 +539,7 @@ const MyAccount = () => {
     const formDataObj = new FormData();
 
     Object.keys(formData).forEach((key) => {
-      if (key === "images" || key === "floorPlans") {
+      if (key === "images") {
         formData[key].forEach((file) => {
           formDataObj.append(key, file);
         });
@@ -361,7 +550,7 @@ const MyAccount = () => {
 
     try {
       const response = await fetch(
-        "https://sqrft-website-backend.onrender.com/api/form/submit",
+        "https://sqrft-website-backend-ohqz.onrender.com/api/form/submit",
         {
           method: "POST",
           body: formDataObj,
@@ -396,7 +585,7 @@ const MyAccount = () => {
   const fetchProperties = async (page) => {
     try {
       const response = await axios.get(
-        "https://sqrft-website-backend.onrender.com/api/form"
+        "https://sqrft-website-backend-ohqz.onrender.com/api/form"
       );
       const totalProperties = response.data.data || [];
 
@@ -415,14 +604,16 @@ const MyAccount = () => {
   };
 
   const fetchCareerApplications = async (page) => {
+    const itemsPerPage = 10;
+
     try {
       const response = await axios.get(
-        "https://sqrft-website-backend.onrender.com/api/applications"
+        "https://sqrft-website-backend-ohqz.onrender.com/api/applications"
       );
 
-      console.log("Response from API:", response);
+      console.log("Response from API:", response.data);
 
-      const totalApplications = response?.data.data || [];
+      const totalApplications = response?.data || [];
       console.log("Total Application details:", totalApplications);
       const startIndex = (page - 1) * itemsPerPage;
       const paginatedData = totalApplications.slice(
@@ -441,7 +632,7 @@ const MyAccount = () => {
   const fetchContactDetails = async (page) => {
     try {
       const response = await axios.get(
-        "https://sqrft-website-backend.onrender.com/api/contacts"
+        "https://sqrft-website-backend-ohqz.onrender.com/api/contacts"
       );
 
       console.log("Contact Details API Fetched:", response);
@@ -476,30 +667,66 @@ const MyAccount = () => {
     setCurrentPage(page);
   };
 
+  // const handleDelete = async (id) => {
+  //   try {
+  //     const response = await axios.delete(
+  //       `https://sqrft-website-backend-ohqz.onrender.com/api/form/applications/${id}`
+  //     );
+  //     if (response.status === 200) {
+  //       setProperties(properties.filter((property) => property.id !== id));
+  //       alert(`Property with ID ${id} deleted successfully!`);
+  //       fetchProperties(currentPage);
+  //     } else {
+  //       alert("Failed to delete property.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error deleting property:", error.message);
+  //     alert("An error occurred while deleting the property.");
+  //   }
+  // };
+
   const handleDelete = async (id) => {
+    if (!id) {
+      alert("Invalid ID");
+      return;
+    }
+
+    console.log("🗑️ Deleting property with ID:", id);
+
     try {
       const response = await axios.delete(
-        `https://sqrft-website-backend.onrender.com/api/form/${id}`
+        `https://sqrft-website-backend-ohqz.onrender.com/api/applications/${id}`
       );
-      if (response.status === 200) {
-        setProperties(properties.filter((property) => property.id !== id));
-        alert(`Property with ID ${id} deleted successfully!`);
+
+      if (response.status === 200 || response.status === 204) {
+        // Ensure properties is defined and contains items
+        if (Array.isArray(properties)) {
+          setProperties(properties.filter((property) => property._id !== id));
+        }
+
+        alert(`✅ Property with ID ${id} deleted successfully!`);
+        fetchProperties(currentPage); // Refresh the list
       } else {
-        alert("Failed to delete property.");
+        alert("❌ Failed to delete property.");
+        console.warn("Unexpected status code:", response.status);
       }
     } catch (error) {
-      console.error("Error deleting property:", error.message);
-      alert("An error occurred while deleting the property.");
+      console.error(
+        "🔥 Error deleting property:",
+        error.response?.data || error.message
+      );
+      alert("⚠️ An error occurred while deleting the property.");
     }
   };
 
   const handleContactDelete = async (id) => {
     try {
       const response = await axios.delete(
-        `hhttps://sqrft-website-backend.onrender.com/api/contacts/${id}`
+        `https://sqrft-website-backend-ohqz.onrender.com/api/contacts/${id}`
       );
       if (response.status === 200) {
         alert(`Property with ID ${id} deleted successfully!`);
+        fetchContactDetails(currentPage);
       } else {
         alert("Failed to delete property.");
       }
@@ -520,11 +747,6 @@ const MyAccount = () => {
       setUploadedFiles((prevFiles) => ({ ...prevFiles, [activeTab]: [] }));
     }
   }, [activeTab]);
-
-  console.log("Contact Data:", contactDetails);
-  console.log("Appliaction Data:", careerApplications);
-
-  let publicUrl = process.env.PUBLIC_URL + "/";
 
   return (
     <div className="liton__wishlist-area pb-70">
@@ -824,6 +1046,20 @@ const MyAccount = () => {
                                 </div>
                               </div>
                             </div>
+                            <h6>About the Builder</h6>
+                            <div className="row">
+                              <div className="col-md-12">
+                                <div className="input-item input-item-textarea ltn__custom-icon">
+                                  <textarea
+                                    name="aboutBuilder"
+                                    placeholder="*About Builder (mandatory)"
+                                    value={formData.aboutBuilder}
+                                    onChange={handleInputChange}
+                                    required
+                                  />
+                                </div>
+                              </div>
+                            </div>
 
                             <h6>Listing Media</h6>
                             <input
@@ -920,9 +1156,9 @@ const MyAccount = () => {
                               ))}
                             </ul>
 
-                            <h6>Floor Plans</h6>
+                            {/* <h6>Floor Plans</h6> */}
                             {/* Tabs Menu */}
-                            <div className="ltn__tab-menu ltn__tab-menu-3">
+                            {/* <div className="ltn__tab-menu ltn__tab-menu-3">
                               <div className="nav">
                                 {floorPlanTabs.map((tab, index) => (
                                   <a
@@ -945,20 +1181,20 @@ const MyAccount = () => {
                                   </a>
                                 ))}
                               </div>
-                            </div>
+                            </div> */}
 
                             {/* File Upload Input */}
-                            <input
+                            {/* <input
                               type="file"
                               name="floorPlans"
                               multiple
                               onChange={handleInputChange}
                               className="btn theme-btn-3 mb-10"
                               style={{ margin: "10px 0" }}
-                            />
+                            /> */}
 
                             {/* Display Uploaded Files */}
-                            <div>
+                            {/* <div>
                               <h6>Uploaded Files for {activeTab}:</h6>
                               {uploadedFiles[activeTab] &&
                               uploadedFiles[activeTab].length > 0 ? (
@@ -972,7 +1208,7 @@ const MyAccount = () => {
                               ) : (
                                 <p>No files uploaded for this floor plan.</p>
                               )}
-                            </div>
+                            </div> */}
 
                             <h6>Amenities</h6>
                             <div className="row">
@@ -996,6 +1232,36 @@ const MyAccount = () => {
                                   </label>
                                 </div>
                               ))}
+                            </div>
+
+                            <h6>Disclaimer</h6>
+                            <div className="row">
+                              <div className="col-md-12">
+                                <div className="input-item input-item-textarea ltn__custom-icon">
+                                  <textarea
+                                    name="disclaimer"
+                                    placeholder="*Disclamer (mandatory)"
+                                    value={formData.disclaimer}
+                                    onChange={handleInputChange}
+                                    required
+                                  />
+                                </div>
+                              </div>
+                            </div>
+
+                            <h6>RERA Detail</h6>
+                            <div className="row">
+                              <div className="col-md-12">
+                                <div className="input-item input-item-textarea ltn__custom-icon">
+                                  <textarea
+                                    name="reraDetails"
+                                    placeholder="*Rera Detail (mandatory)"
+                                    value={formData.reraDetails}
+                                    onChange={handleInputChange}
+                                    required
+                                  />
+                                </div>
+                              </div>
                             </div>
 
                             <div className="btn-wrapper text-center mt-30">
@@ -1025,30 +1291,25 @@ const MyAccount = () => {
                                   <th scope="col">Name</th>
                                   <th scope="col">Email</th>
                                   <th scope="col">Role</th>
-
                                   <th scope="col">Phone Number</th>
                                   <th scope="col">Cover Letter</th>
                                   <th scope="col">Resume</th>
-
                                   <th scope="col">Delete</th>
                                 </tr>
                               </thead>
                               <tbody>
                                 {careerApplications.length > 0 ? (
+                                  (console.log(
+                                    "Career Applications:",
+                                    careerApplications
+                                  ),
                                   careerApplications.map((property) => (
                                     <tr key={property.id}>
                                       <td className="ltn__my-properties-img">
                                         <Link
                                           to={`/product-details/${property.id}`}
                                         >
-                                          <img
-                                            src={
-                                              property.images[0] ||
-                                              "https://via.placeholder.com/100"
-                                            }
-                                            alt="Property"
-                                            width="100"
-                                          />
+                                          {property.fullName || "No Name"}
                                         </Link>
                                       </td>
                                       <td>
@@ -1057,16 +1318,28 @@ const MyAccount = () => {
                                             <Link
                                               to={`/product-details/${property.id}`}
                                             >
-                                              {property.title || "No Title"}
+                                              {property.email || "No Email"}
                                             </Link>
                                           </h6>
-                                          <small>
+                                          {/* <small>
                                             <i className="fas fa-map-marker-alt" />{" "}
                                             {property.address || "No Location"}
-                                          </small>
+                                          </small> */}
                                         </div>
                                       </td>
-                                      <td>{property.createdAt || "No Date"}</td>
+                                      <td>{property.role || "No Role"}</td>
+                                      <td>
+                                        {property.phone || "No Phone no."}
+                                      </td>
+                                      <td>{property.coverLetter || "No CV"}</td>
+                                      <td>
+                                        <Link
+                                          to={property.resumeUrl}
+                                          target="_blank"
+                                        >
+                                          {property.resumeUrl || "No Resume"}
+                                        </Link>
+                                      </td>
                                       <td>
                                         <button
                                           className="btn btn-danger btn-sm"
@@ -1078,7 +1351,7 @@ const MyAccount = () => {
                                         </button>
                                       </td>
                                     </tr>
-                                  ))
+                                  )))
                                 ) : (
                                   <tr>
                                     <td colSpan="6" className="text-center">
@@ -1263,12 +1536,17 @@ const MyAccount = () => {
                       >
                         <div className="ltn__myaccount-tab-content-inner">
                           <div className="ltn__my-properties-table table-responsive">
-                            <h2 className="mb-3">Submit Testimonial</h2>
+                            <h2 className="mb-3">Testimonial</h2>
 
                             {/* Testimonial Form */}
-                            <form onSubmit={submitTestimonial} className="mb-4">
+                            <form
+                              onSubmit={submitTestimonial}
+                              encType="multipart/form-data"
+                              className="mb-4"
+                            >
                               <input
                                 type="text"
+                                name="testimonial"
                                 placeholder="Name"
                                 value={testimonialForm.name}
                                 onChange={(e) =>
@@ -1281,6 +1559,7 @@ const MyAccount = () => {
                               />
                               <input
                                 type="file"
+                                name="image"
                                 accept="image/*"
                                 onChange={(e) =>
                                   setTestimonialForm({
@@ -1313,7 +1592,12 @@ const MyAccount = () => {
                                 }
                                 required
                               />
-                              <button type="submit" disabled={loading}>
+
+                              <button
+                                type="submit"
+                                disabled={loading}
+                                className="btn btn-primary"
+                              >
                                 {loading
                                   ? "Submitting..."
                                   : "Submit Testimonial"}
@@ -1338,7 +1622,7 @@ const MyAccount = () => {
                                       <td>{testimonial.name || "N/A"}</td>
                                       <td>
                                         <img
-                                          src={`https://sqrft-website-backend.onrender.com${testimonial.image}`}
+                                          src={`https://sqrft-website-backend-ohqz.onrender.com${testimonial.image}`}
                                           alt={testimonial.name}
                                           width={50}
                                         />
@@ -1409,6 +1693,7 @@ const MyAccount = () => {
                               />
                               <input
                                 type="file"
+                                name="image"
                                 accept="image/*"
                                 onChange={(e) =>
                                   setTeamForm({
@@ -1580,7 +1865,11 @@ const MyAccount = () => {
                             <h2 className="mb-3">Add Blogs</h2>
 
                             {/* Blog Form */}
-                            <form onSubmit={submitBlog} className="mb-4">
+                            <form
+                              onSubmit={submitBlog}
+                              className="mb-4"
+                              encType="multipart/form-data"
+                            >
                               <input
                                 type="text"
                                 placeholder="Title"
@@ -1593,6 +1882,7 @@ const MyAccount = () => {
                                 }
                                 required
                               />
+
                               <input
                                 type="text"
                                 placeholder="Description"
@@ -1607,12 +1897,36 @@ const MyAccount = () => {
                               />
                               <input
                                 type="text"
-                                placeholder="Content"
-                                value={blogForm.content}
+                                placeholder="Paragraph_1"
+                                value={blogForm.para_1}
                                 onChange={(e) =>
                                   setBlogForm({
                                     ...blogForm,
-                                    content: e.target.value,
+                                    para_1: e.target.value,
+                                  })
+                                }
+                                required
+                              />
+                              <input
+                                type="text"
+                                placeholder="Paragraph_2"
+                                value={blogForm.para_2}
+                                onChange={(e) =>
+                                  setBlogForm({
+                                    ...blogForm,
+                                    para_2: e.target.value,
+                                  })
+                                }
+                                required
+                              />
+                              <input
+                                type="text"
+                                placeholder="Conclusion"
+                                value={blogForm.conclusion}
+                                onChange={(e) =>
+                                  setBlogForm({
+                                    ...blogForm,
+                                    conclusion: e.target.value,
                                   })
                                 }
                                 required
@@ -1651,7 +1965,9 @@ const MyAccount = () => {
                                 <tr>
                                   <th>Title</th>
                                   <th>Description</th>
-                                  <th>Content</th>
+                                  <th>Para_1</th>
+                                  <th>Para_2</th>
+                                  <th>Conclusion</th>
                                   <th>Image</th>
                                   <th>Written By</th>
                                   <th>Delete</th>
@@ -1663,7 +1979,9 @@ const MyAccount = () => {
                                     <tr key={blog._id}>
                                       <td>{blog.title || "N/A"}</td>
                                       <td>{blog.description || "N/A"}</td>
-                                      <td>{blog.content || "N/A"}</td>
+                                      <td>{blog.para_1 || "N/A"}</td>
+                                      <td>{blog.para_2 || "N/A"}</td>
+                                      <td>{blog.conclusion || "N/A"}</td>
                                       <td>
                                         <img
                                           src={`https://sqrft-website-backend-ohqz.onrender.com${blog.image}`}

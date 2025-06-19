@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProjectDetails = ({title, description, dimension, projectData}) => {
+const ProjectDetails = ({ projectData }) => {
   return (
     <section className="p-6 space-y-8 text-gray-800">
       {/* Description */}
@@ -8,35 +8,13 @@ const ProjectDetails = ({title, description, dimension, projectData}) => {
         <h2 className="text-3xl font-semi-bold text-gray-100 mb-2">
           {projectData.title}
         </h2>
-        <p className="text-gray-400 mb-2">
-          {projectData.description}
-        </p>
-        {/* <p className="text-gray-400">
-          Paras Plots Meerut is a high-end residential development that
-          encompasses 30 acres and offers exclusively developed plots...
-        </p> */}
+        <p className="text-gray-400 mb-2">{projectData.description}</p>
       </div>
-
-      {/* Amenities & Facilities */}
-      {/* <div>
-        <h3 className="text-xl font-semi-bold text-gray-100">
-          Paras Estate Meerut Amenities & Facilities
-        </h3>
-        <ul className="list-disc text-gray-400 pl-5 space-y-1 mt-2">
-          <li>Gated Community</li>
-          <li>Green spaces and landscaped parks</li>
-          <li>Clubhouse and community center</li>
-          <li>Fitness center and jogging tracks</li>
-          <li>Ample parking</li>
-          <li>24/7 CCTV cameras</li>
-          <li>LED street lighting</li>
-        </ul>
-      </div> */}
 
       {/* Site Area Breakdown */}
       <div>
         <h3 className="text-xl font-semi-bold text-gray-100">
-          Paras Estate Meerut Site & Area Break-Down
+          Site & Area Break-Down
         </h3>
         <table className="w-full mt-3 border text-gray-400 border-gray-300 text-sm">
           <tbody>
@@ -50,18 +28,14 @@ const ProjectDetails = ({title, description, dimension, projectData}) => {
             </tr>
             <tr className="border-b">
               <td className="p-2 font-medium">Type of Property</td>
-              <td className="p-2">
-                {projectData.category}
-              </td>
+              <td className="p-2">{projectData.category}</td>
             </tr>
             <tr className="border-b">
               <td className="p-2 font-medium">Price</td>
               <td className="p-2">{projectData.price}</td>
             </tr>
             <tr>
-              <td className="p-2 font-medium">
-                Year of Completion
-              </td>
+              <td className="p-2 font-medium">Year of Completion</td>
               <td className="p-2">{projectData.yearBuilt}</td>
             </tr>
           </tbody>
@@ -71,7 +45,7 @@ const ProjectDetails = ({title, description, dimension, projectData}) => {
       {/* Commercial Space */}
       <div>
         <h3 className="text-xl font-semi-bold text-gray-100">
-          Paras Estate Meerut offers luxurious commercial space in:
+          Luxurious commercial space in:
         </h3>
         <ul className="list-disc text-gray-400 pl-5 space-y-1 mt-2">
           <li>Retail stores and showrooms</li>
@@ -84,11 +58,9 @@ const ProjectDetails = ({title, description, dimension, projectData}) => {
 
       {/* Location Advantages */}
       <div>
-        <h3 className="text-xl font-semi-bold text-gray-100">
-          Paras Estate Meerut Location Advantages
-        </h3>
+        <h3 className="text-xl font-semi-bold text-gray-100">Advantages</h3>
         <ul className="list-disc text-gray-400 pl-5 space-y-1 mt-2">
-          <li>Strategic location near Meerut Bypass</li>
+          <li>Strategic location near Bypass</li>
           <li>Excellent connectivity</li>
           <li>Nearby landmarks</li>
           <li>Educational, health and shopping facilities</li>
@@ -99,7 +71,7 @@ const ProjectDetails = ({title, description, dimension, projectData}) => {
       {/* Price & Payments */}
       <div>
         <h3 className="text-xl font-semi-bold text-gray-100">
-          Paras Estate Meerut Price & Payments
+          Price & Payments
         </h3>
         <table className="w-full mt-3 border border-gray-300 text-sm">
           <thead className="bg-gray-100">
@@ -122,7 +94,7 @@ const ProjectDetails = ({title, description, dimension, projectData}) => {
       {/* Why Invest */}
       <div>
         <h3 className="text-xl font-semi-bold text-gray-100">
-          Why to Invest in Paras Estate Meerut?
+          Why Invest in this?
         </h3>
         <ul className="list-disc text-gray-400 pl-5 space-y-1 mt-2">
           <li>High potential for appreciation</li>

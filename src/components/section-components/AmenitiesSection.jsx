@@ -5,7 +5,7 @@ import {
   FaTree, FaDoorOpen, FaChild, FaCalendarAlt, FaFireExtinguisher
 } from 'react-icons/fa';
 
-const amenities = [
+const amenity = [
   { icon: <FaUtensils size={24} />, title: 'Cafeteria/Food Court' },
   { icon: <FaPowerOff size={24} />, title: 'Power Backup' },
   { icon: <FaBuilding size={24} />, title: 'Lift' },
@@ -24,29 +24,23 @@ const amenities = [
   { icon: <FaFireExtinguisher size={24} />, title: 'Fire Fighting Equipment' },
 ];
 
-const Amenities = () => {
+const Amenities = ({amenities}) => {
+
+  const amenity = amenities[0].split(",");
+  
   return (
     <section className="my-10 p-4">
       <h2 className="text-3xl font-semi-bold text-gray-100 mb-6">Amenities</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 bg-transparent rounded-lg">
-        {amenities.map((amenity, index) => (
+        {amenity.map((amenity, index) => (
           <div
             key={index}
-            className="flex items-center gap-4 p-4 bg-white rounded-md shadow hover:shadow-lg transition duration-300"
           >
-            <div className="text-teal-600">{amenity.icon}</div>
-            <span className="text-gray-700 font-medium">{amenity.title}</span>
+            <div className="flex items-center gap-4 p-4 bg-white rounded-md shadow hover:shadow-lg transition duration-300 text-teal-600" >{amenity}</div>
+            {/* <span className="text-gray-700 font-medium">{amenity.title}</span> */}
           </div>
         ))}
-        {/* {amenities.map((amenity, index) => (
-          <div
-            key={index}
-            className="flex items-center gap-4 p-4 bg-white rounded-md shadow hover:shadow-lg transition duration-300"
-          >
-            <div className="text-teal-600">{amenity.icon}</div>
-            <span className="text-gray-700 font-medium">{amenity}</span>
-          </div>
-        ))} */}
+        
       </div>
     </section>
   );

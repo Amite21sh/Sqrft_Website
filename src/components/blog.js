@@ -8,7 +8,7 @@ import Footer from './global-components/footer';
 const BlogRightSidebarPage = () => {
     return <div>
         <Navbar />
-        <PageHeader headertitle="Blog" subheader="Blog" />
+        <PageHeader headertitle="Blogs" subheader="Blogs" />
         <BlogRightSidebar />
         <CallToActionV1 />
         <Footer />

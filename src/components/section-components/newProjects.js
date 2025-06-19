@@ -51,18 +51,18 @@ function Projects() {
       </div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredProjects.map((project) => (
+        {filteredProjects.slice(0,3).map((project) => (
           <div
             key={project.id}
             className="bg-white rounded-lg overflow-hidden relative text-black shadow-lg"
           >
             <img
-              src={project.images}
+              src={project.images[0]}
               alt={project.title}
               className="w-full h-48 sm:h-56 object-cover"
             />
             <div className="absolute top-4 right-4 bg-orange-500 text-white text-xs px-2 py-1 rounded">
-              {project.tag}
+              {project.propertyStatus}
             </div>
             <div className="p-4">
               <h3 className="text-lg sm:text-xl font-semibold mb-2">{project.title}</h3>

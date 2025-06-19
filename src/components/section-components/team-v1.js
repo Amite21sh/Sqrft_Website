@@ -10,68 +10,10 @@ class TeamV1 extends Component {
 		let imagealt = 'image'
 
 		return <div className="ltn__team-area pt-115 pb-90 go-top">
-			<div className="container">
-				<div className="row">
-					<div className="col-lg-12">
-						<div className="section-title-area ltn__section-title-2--- text-center">
-							<h6 className="section-subtitle section-subtitle-2 ltn__secondary-color">Team Members</h6>
-						</div>
-					</div>
-				</div>
+			<div style={{ marginRight: "80px", marginLeft: "80px" }} >
+				
 
-				<div className="row justify-content-center">
-					<div className="col-lg-3 col-sm-6">
-						<div className="ltn__team-item ltn__team-item-3---">
-							<div className="team-img">
-								<img style={{ width: "89%", marginTop: "10px" }} src={publicUrl + "assets/img/team/4.png"} alt="Image" />
-							</div>
-							<div className="team-info">
-								<h4>Abhay Pratap Singh</h4>
-								<h6 className="ltn__secondary-color">Sales & Marketing</h6>
-							</div>
-						</div>
-					</div>
-
-					<div className="col-lg-3 col-sm-6">
-						<div className="ltn__team-item ltn__team-item-3---">
-							<div className="team-img">
-								<img style={{ width: "89%", marginTop: "10px" }} src={publicUrl + "assets/img/team/2.png"} alt="Image" />
-							</div>
-							<div className="team-info">
-								<h4>Jeewan Pant</h4>
-								<h6 className="ltn__secondary-color">Operations & Marketing</h6>
-
-							</div>
-						</div>
-					</div>
-
-					<div className="col-lg-3 col-sm-6">
-						<div className="ltn__team-item ltn__team-item-3---">
-							<div className="team-img">
-								<img style={{ width: "89%", marginTop: "10px" }} src={publicUrl + "assets/img/team/5.png"} alt="Image" />
-							</div>
-							<div className="team-info">
-								<h4>Rohit Trivedi</h4>
-								<h6 className="ltn__secondary-color">Sales & Liaisoning</h6>
-
-							</div>
-						</div>
-					</div>
-
-					<div className="col-lg-3 col-sm-6">
-						<div className="ltn__team-item ltn__team-item-3---">
-							<div className="team-img">
-								<img style={{ width: "89%", marginTop: "10px" }} src={publicUrl + "assets/img/team/6.png"} alt="Image" />
-							</div>
-							<div className="team-info">
-								<h4>Ashish Pandey</h4>
-								<h6 className="ltn__secondary-color">HR Finance & Liaisoning</h6>
-
-							</div>
-						</div>
-					</div>
-
-				</div>
+				
 
 				<div className="row justify-content-center mt-10">
 					<h4>Here are our Plus Points</h4>

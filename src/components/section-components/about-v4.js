@@ -9,7 +9,7 @@ class AboutV4 extends Component {
 		let publicUrl = process.env.PUBLIC_URL + '/'
 
 		return <div className="ltn__about-us-area pt-120--- pb-90 mt--30 go-top">
-			<div className="container">
+			<div style={{ marginRight: "80px", marginLeft: "80px" }}>
 				<div className="row">
 
 					<div className="col-lg-6 align-self-center">

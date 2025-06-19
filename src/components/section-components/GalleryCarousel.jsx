@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 
-// const images = [
-//   '/images/gallery1.jpg',
-//   '/images/gallery2.jpg',
-//   '/images/gallery3.jpg',
-// ];
+
 
 const Gallery = ({images}) => {
   const [current, setCurrent] = useState(0);
@@ -24,7 +20,7 @@ const Gallery = ({images}) => {
       <div className="relative rounded-xl overflow-hidden shadow-lg">
         <img
           // src={images[current]}
-          src={images[0]}
+          src={images[current]}
           alt={`Gallery ${current + 1}`}
           className="w-full h-[450px] object-cover"
         />

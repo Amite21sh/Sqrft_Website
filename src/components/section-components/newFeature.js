@@ -5,7 +5,7 @@ function WhyChooseUs() {
   return (
     <section className="py-16 bg-gray-900 text-center">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-white mb-45">
+        <h2 className="text-4xl font-bold text-white mb-20">
           Why Choose SQRFT Infratech?
         </h2>
 
