@@ -149,6 +149,7 @@ const MyAccount = () => {
         "https://sqrft-website-backend-ohqz.onrender.com/api/media"
       );
       setMedia(response.data);
+      console.log("Fetched media:", response.data);
     } catch (error) {
       console.error("Error fetching media:", error);
     }
@@ -166,13 +167,9 @@ const MyAccount = () => {
     formDataObj.append("position", teamForm.position);
     formDataObj.append("image", teamForm.image);
     try {
-      await axios.post(
-        "https://sqrft-website-backend-ohqz.onrender.com/api/teamMembers",
-        formDataObj,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      await axios.post("https://sqrft-website-backend-ohqz.onrender.com/api/teamMembers", formDataObj, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
       fetchTeamMembers();
 
@@ -183,46 +180,6 @@ const MyAccount = () => {
       setLoading(false);
     }
   };
-
-  // const submitBlog = async (e) => {
-  //   e.preventDefault();
-  //   if (!blogForm.image) {
-  //     alert("Please select an image.");
-  //     return;
-  //   }
-  //   setLoading(true);
-  //   const formDataObj = new FormData();
-  //   formDataObj.append("title", blogForm.title);
-  //   formDataObj.append("description", blogForm.description);
-  //   formDataObj.append("image", blogForm.image);
-  //   formDataObj.append("para_1", blogForm.para_1);
-  //   formDataObj.append("para_2", blogForm.para_2);
-  //   formDataObj.append("conclusion", blogForm.conclusion);
-  //   formDataObj.append("writtenBy", blogForm.writtenBy);
-  //   try {
-  //     await axios.post(
-  //       "https://sqrft-website-backend-ohqz.onrender.com/api/blogs",
-  //       formDataObj,
-  //       {
-  //         headers: { "Content-Type": "multipart/form-data" },
-  //       }
-  //     );
-  //     fetchBlogs();
-  //     setBlogForm({
-  //       title: "",
-  //       description: "",
-  //       para_1: "",
-  //       para_2:"",
-  //       conclusion:"",
-  //       image: null,
-  //       writtenBy: "",
-  //     });
-  //   } catch (error) {
-  //     console.error("Error adding blog:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   const submitBlog = async (e) => {
     e.preventDefault();
@@ -244,9 +201,12 @@ const MyAccount = () => {
     try {
       await axios.post(
         "https://sqrft-website-backend-ohqz.onrender.com/api/blogs",
-        formDataObj
-        // ❌ Don't set headers manually here
+        formDataObj,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
       );
+
       fetchBlogs();
       setBlogForm({
         title: "",
@@ -289,121 +249,6 @@ const MyAccount = () => {
       setDeleting(null);
     }
   };
-
-  // const submitTestimonial = async (e) => {
-  //   e.preventDefault();
-  //   if (!testimonialForm.image) {
-  //     alert("Please select an image.");
-  //     return;
-  //   }
-  //   setLoading(true);
-  //   const formDataObj = new FormData();
-  //   formDataObj.append("name", testimonialForm.name);
-  //   formDataObj.append("image", testimonialForm.image);
-  //   formDataObj.append("description", testimonialForm.description);
-  //   formDataObj.append("position", testimonialForm.position);
-
-  //   try {
-  //     await axios.post(
-  //       "https://sqrft-website-backend-ohqz.onrender.com/api/testimonialUsers",
-  //       formDataObj,
-  //       {
-  //         headers: { "Content-Type": "multipart/form-data" },
-  //       }
-  //     );
-  //     fetchTestimonials();
-  //     setTestimonialForm({
-  //       name: "",
-  //       image: null,
-  //       description: "",
-  //       position: "",
-  //     });
-  //   } catch (error) {
-  //     console.error("Error adding testimonial:", error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // const submitTestimonial = async (e) => {
-  //   e.preventDefault();
-
-  //   // Validate image
-  //   if (!testimonialForm.image) {
-  //     alert("❗ Please select an image.");
-  //     return;
-  //   }
-
-  //   if (!testimonialForm.image.type.startsWith("image/")) {
-  //     alert("❗ Only image files are allowed.");
-  //     return;
-  //   }
-
-  //   // Optional: Validate other fields
-  //   if (
-  //     !testimonialForm.name ||
-  //     !testimonialForm.description ||
-  //     !testimonialForm.position
-  //   ) {
-  //     alert("❗ Please fill in all the fields.");
-  //     return;
-  //   }
-
-  //   setLoading(true);
-
-  //   const formDataObj = new FormData();
-  //   formDataObj.append("name", testimonialForm.name);
-  //   formDataObj.append("image", testimonialForm.image);
-  //   formDataObj.append("description", testimonialForm.description);
-  //   formDataObj.append("position", testimonialForm.position);
-
-  //   try {
-  //     const response = await axios.post(
-  //       "https://sqrft-website-backend-ohqz.onrender.com/api/testimonialUsers",
-  //       formDataObj // no headers here!
-  //     );
-
-  //     // const response = await axios.post(
-  //     //   "https://sqrft-website-backend-ohqz.onrender.com/api/testimonialUsers",
-  //     //   formDataObj,
-  //     //   {
-  //     //     headers: { "Content-Type": "multipart/form-data" },
-  //     //   }
-  //     // );
-
-  //     if (!testimonialForm.image) {
-  //       alert("Please select an image.");
-  //       return;
-  //     }
-
-  //     for (let pair of formDataObj.entries()) {
-  //       console.log(`${pair[0]}:`, pair[1]);
-  //     }
-
-  //     if (response.status === 201 || response.status === 200) {
-  //       alert("✅ Testimonial submitted successfully!");
-  //       fetchTestimonials();
-
-  //       // Reset form
-  //       setTestimonialForm({
-  //         name: "",
-  //         image: null,
-  //         description: "",
-  //         position: "",
-  //       });
-  //     } else {
-  //       alert("⚠️ Failed to submit testimonial.");
-  //     }
-  //   } catch (error) {
-  //     console.error(
-  //       "🔥 Error adding testimonial:",
-  //       error.response?.data || error.message
-  //     );
-  //     alert("❌ An error occurred while submitting the testimonial.");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   const submitTestimonial = async (e) => {
     e.preventDefault();
@@ -474,13 +319,9 @@ const MyAccount = () => {
     formDataObj.append("image", mediaForm.image); // Ensure this is a File
 
     try {
-      await axios.post(
-        "https://sqrft-website-backend-ohqz.onrender.com/api/media",
-        formDataObj,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      await axios.post("https://sqrft-website-backend-ohqz.onrender.com/api/media", formDataObj, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       fetchMedia(); // Refresh media list
       setMediaForm({ image: null }); // Reset form
     } catch (error) {
@@ -549,13 +390,10 @@ const MyAccount = () => {
     });
 
     try {
-      const response = await fetch(
-        "https://sqrft-website-backend-ohqz.onrender.com/api/form/submit",
-        {
-          method: "POST",
-          body: formDataObj,
-        }
-      );
+      const response = await fetch("https://sqrft-website-backend-ohqz.onrender.com/api/form/submit", {
+        method: "POST",
+        body: formDataObj,
+      });
 
       if (response.ok) {
         const result = await response.json();
@@ -596,6 +434,7 @@ const MyAccount = () => {
       );
 
       setProperties(paginatedData);
+      console.log("Fetched properties:", paginatedData);
       setTotalPages(Math.ceil(totalProperties.length / itemsPerPage));
     } catch (error) {
       console.error("Error fetching properties:", error);
@@ -695,7 +534,7 @@ const MyAccount = () => {
 
     try {
       const response = await axios.delete(
-        `https://sqrft-website-backend-ohqz.onrender.com/api/applications/${id}`
+        `https://sqrft-website-backend-ohqz.onrender.com/api/form/${id}`
       );
 
       if (response.status === 200 || response.status === 204) {
@@ -1622,7 +1461,7 @@ const MyAccount = () => {
                                       <td>{testimonial.name || "N/A"}</td>
                                       <td>
                                         <img
-                                          src={`https://sqrft-website-backend-ohqz.onrender.com${testimonial.image}`}
+                                          src={`https://res.cloudinary.com/drvphnwxq/image/upload/v1753277068/${testimonial.image}`}
                                           alt={testimonial.name}
                                           width={50}
                                         />
@@ -1739,7 +1578,7 @@ const MyAccount = () => {
                                       <td>{teamMember.name || "N/A"}</td>
                                       <td>
                                         <img
-                                          src={`https://sqrft-website-backend-ohqz.onrender.com${teamMember.image}`}
+                                          src={`https://res.cloudinary.com/drvphnwxq/image/upload/v1753277068/${teamMember.image}`}
                                           alt={teamMember.name}
                                           width={50}
                                         />
@@ -1819,7 +1658,7 @@ const MyAccount = () => {
                                       <td>{med.name || "N/A"}</td>
                                       <td>
                                         <img
-                                          src={`https://sqrft-website-backend-ohqz.onrender.com${med.image}`}
+                                          src={`https://res.cloudinary.com/drvphnwxq/image/upload/v1753277068/${med.image}`}
                                           alt={med.name}
                                           width={50}
                                         />
@@ -1868,7 +1707,7 @@ const MyAccount = () => {
                             <form
                               onSubmit={submitBlog}
                               className="mb-4"
-                              encType="multipart/form-data"
+                              // encType="multipart/form-data"
                             >
                               <input
                                 type="text"

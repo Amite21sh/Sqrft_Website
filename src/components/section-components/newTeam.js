@@ -32,7 +32,7 @@ function Team() {
               >
                 <div className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center">
                   <img
-                    src={`https://sqrft-website-backend-ohqz.onrender.com${member.image}`} // Replace with your image path
+                    src={`https://res.cloudinary.com/drvphnwxq/image/upload/v1753277068/${member.image}`} // Replace with your image path
                     alt={member.name}
                     className="w-40 h-40 object-cover rounded-xl mb-6"
                   />

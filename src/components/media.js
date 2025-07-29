@@ -17,7 +17,7 @@ const MediaGallery = () => {
   const fetchMedia = async () => {
     try {
       const response = await fetch(
-        "https://sqrft-website-backend-ohqz.onrender.com/api/media"
+        "http://localhost:5247/api/media"
       );
       const data = await response.json();
       setMedia(data);
@@ -60,7 +60,7 @@ const MediaGallery = () => {
         {media.map((med, index) => (
           <img
             key={index}
-            src={`https://sqrft-website-backend-ohqz.onrender.com${med.image}`}
+            src={`https://res.cloudinary.com/drvphnwxq/image/upload/v1753277068/${med.image}`}
             alt={med._id}
             className="w-full h-60 object-cover rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
           />
