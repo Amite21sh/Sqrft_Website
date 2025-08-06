@@ -201,6 +201,7 @@ const MyAccount = () => {
     try {
       await axios.post(
         "https://sqrft-website-backend-ohqz.onrender.com/api/blogs",
+        // "http://localhost:5247/api/blogs",
         formDataObj,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -228,7 +229,8 @@ const MyAccount = () => {
   const fetchBlogs = async () => {
     try {
       const response = await axios.get(
-        "https://sqrft-website-backend-ohqz.onrender.com/api/blogs"
+        "https://sqrft-website-backend-ohqz.onrender.com/api/blogs",
+        // "http://localhost:5247/api/blogs",
       );
       setBlogs(response.data);
     } catch (error) {
@@ -1823,7 +1825,7 @@ const MyAccount = () => {
                                       <td>{blog.conclusion || "N/A"}</td>
                                       <td>
                                         <img
-                                          src={`https://sqrft-website-backend-ohqz.onrender.com${blog.image}`}
+                                          src={`https://res.cloudinary.com/drvphnwxq/image/upload/v1753277068/${blog.image}`}
                                           alt={blog.title}
                                           width={50}
                                         />
