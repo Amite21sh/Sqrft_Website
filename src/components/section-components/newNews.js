@@ -7,7 +7,9 @@ function LatestNews() {
 
   const fetchNewsData = async () => {
     try {
-      const response = await axios.get("https://sqrft-website-backend-ohqz.onrender.com/api/blogs/");
+      const response = await axios.get(
+        "https://sqrft-website-backend-ohqz.onrender.com/api/blogs/"
+      );
       console.log("Latest News", response.data);
       setNews(response.data);
     } catch (error) {
@@ -27,13 +29,13 @@ function LatestNews() {
         <h2 className="text-4xl font-bold mt-5 mb-20">Latest News</h2>
 
         <div className="grid md:grid-cols-2 gap-10">
-          {news.slice(0,2).map((item) => (
+          {news.slice(0, 2).map((item) => (
             <div
               key={item.id} // Assuming each news item has a unique ID
               className="bg-gradient-to-b from-gray-900 to-gray-800 rounded-lg overflow-hidden shadow-lg"
             >
               <img
-                src={`https://sqrft-website-backend-ohqz.onrender.com${item.image}`} // Replace with your image path
+                src={`https://res.cloudinary.com/drvphnwxq/image/upload/v1753277068/${item.image}`}
                 alt={item.title}
                 className="w-full h-56 object-cover"
               />
@@ -52,7 +54,6 @@ function LatestNews() {
               </div>
             </div>
           ))}
-          
         </div>
       </div>
     </section>

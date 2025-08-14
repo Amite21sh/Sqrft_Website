@@ -24,8 +24,8 @@ function Team() {
     <section className="py-16 bg-gray-200">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold text-gray-800 mb-20">Our Team</h2>
-        <div className="grid md:grid-cols-3 gap-10">
-          {teamMembers.slice(0,3).map((member) => (
+        <div className="grid md:grid-cols-4 gap-10">
+          {teamMembers.slice(0,4).map((member) => (
             <>
               <div
                 key={member.id} // Assuming each team member has a unique ID
