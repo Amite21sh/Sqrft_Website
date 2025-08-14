@@ -12,8 +12,8 @@ function Navbar() {
   const socialLinks = [
     { icon: <FaFacebookF />, url: "https://facebook.com", label: "Facebook" },
     { icon: <FaTwitter />, url: "https://twitter.com", label: "Twitter" },
-    { icon: <FaInstagram />, url: "https://instagram.com", label: "Instagram" },
-    { icon: <FaLinkedinIn />, url: "https://linkedin.com", label: "LinkedIn" },
+    { icon: <FaInstagram />, url: "https://www.instagram.com/sqrft_infra/?igsh=MTY5aGk5NXQ3ZjRv#", label: "Instagram" },
+    { icon: <FaLinkedinIn />, url: "https://www.linkedin.com/company/sqrft-infratech/", label: "LinkedIn" },
   ];
   let publicUrl = process.env.PUBLIC_URL + "/";
 
